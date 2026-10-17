@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>dashboard</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px 0;
+        }
+        .container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>dashboard</h1>
+
+        <h2>Produits</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Code Barre</th>
+                    <th>Date Expiration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${produits.empty}">
+                    <td colspan="6" class="text-center">Aucune donnée</td>
+                </tr>
+                <tr th:each="p : ${produits}">
+                    <td th:text="${p.id}">1</td>
+                    <td th:text="${p.nom}">Nom</td>
+                    <td th:text="${p.description}">Description</td>
+                    <td th:text="${p.prix}">0.00</td>
+                    <td th:text="${p.codeBarre}">Code</td>
+                    <td th:text="${p.dateExpiration}">Date</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Categories</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${categories.empty}">
+                    <td colspan="3" class="text-center">Aucune donnée</td>
+                </tr>
+                <tr th:each="c : ${categories}">
+                    <td th:text="${c.id}">1</td>
+                    <td th:text="${c.nom}">Nom</td>
+                    <td th:text="${c.description}">Description</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Fournisseurs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Contact</th>
+                    <th>Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${fournisseurs.empty}">
+                    <td colspan="4" class="text-center">Aucune donnée</td>
+                </tr>
+                <tr th:each="f : ${fournisseurs}">
+                    <td th:text="${f.id}">1</td>
+                    <td th:text="${f.nom}">Nom</td>
+                    <td th:text="${f.contact}">Contact</td>
+                    <td th:text="${f.adresse}">Adresse</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Details Produits</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fabricant</th>
+                    <th>Pays Origine</th>
+                    <th>Composition</th>
+                    <th>Dosage</th>
+                    <th>Indications</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${detailProduits.empty}">
+                    <td colspan="6" class="text-center">Aucune donnée</td>
+                </tr>
+                <tr th:each="dp : ${detailProduits}">
+                    <td th:text="${dp.id}">1</td>
+                    <td th:text="${dp.fabricant}">Fabricant</td>
+                    <td th:text="${dp.paysOrigine}">Pays</td>
+                    <td th:text="${dp.composition}">Composition</td>
+                    <td th:text="${dp.dosage}">Dosage</td>
+                    <td th:text="${dp.indications}">Indications</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Tags</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 100px;">ID</th>
+                    <th>Libelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${tags.empty}">
+                    <td colspan="2" class="text-center">Aucune donnée</td>
+                </tr>
+                <tr th:each="t : ${tags}">
+                    <td th:text="${t.id}">1</td>
+                    <td th:text="${t.libelle}">Libelle</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
